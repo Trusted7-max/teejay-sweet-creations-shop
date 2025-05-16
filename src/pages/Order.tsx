@@ -30,28 +30,28 @@ const standardCakes = [
     name: "Classic Chocolate Cake",
     description: "Rich chocolate cake with chocolate ganache frosting",
     price: "$35.00",
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
   },
   {
     id: 2,
     name: "Vanilla Bean Celebration",
     description: "Light vanilla cake with buttercream frosting and sprinkles",
     price: "$32.00",
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1562777717-dc6984f65a63?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
   },
   {
     id: 3,
     name: "Red Velvet Delight",
     description: "Classic red velvet cake with cream cheese frosting",
     price: "$38.00",
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1586195831800-24f14c992cea?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
   },
   {
     id: 4,
     name: "Strawberry Dream",
     description: "Strawberry cake with fresh strawberry filling and frosting",
     price: "$40.00",
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1611293388250-580b08c4a145?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
   },
 ];
 

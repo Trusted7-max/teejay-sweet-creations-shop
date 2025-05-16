@@ -1,30 +1,29 @@
-
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Cake, CakeSlice, Calendar } from "lucide-react";
 
 const categories = [
-  { name: "Birthday Cakes", image: "/placeholder.svg", path: "/gallery/birthday" },
-  { name: "Wedding Cakes", image: "/placeholder.svg", path: "/gallery/wedding" },
-  { name: "Graduation Cakes", image: "/placeholder.svg", path: "/gallery/graduation" },
-  { name: "Anniversary Cakes", image: "/placeholder.svg", path: "/gallery/anniversary" },
+  { name: "Birthday Cakes", image: "https://images.unsplash.com/photo-1587734361993-0a4c10a3e074?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", path: "/gallery/birthday" },
+  { name: "Wedding Cakes", image: "https://images.unsplash.com/photo-1562777717-dc6984f65a63?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", path: "/gallery/wedding" },
+  { name: "Graduation Cakes", image: "https://images.unsplash.com/photo-1570476922354-81227cdbb62c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", path: "/gallery/graduation" },
+  { name: "Anniversary Cakes", image: "https://images.unsplash.com/photo-1611293388250-580b08c4a145?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", path: "/gallery/anniversary" },
 ];
 
 const testimonials = [
   {
     name: "Sarah Johnson",
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=120&q=80",
     quote: "The birthday cake for my daughter was absolutely perfect! Not only did it look amazing, but it tasted delicious too. Thank you Teejay Bakehouse!",
   },
   {
     name: "Michael Rodriguez",
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=120&q=80",
     quote: "Our wedding cake exceeded all expectations. The design was exactly what we wanted, and our guests couldn't stop raving about how good it tasted.",
   },
   {
     name: "Emily Thompson",
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=120&q=80",
     quote: "I've ordered several celebration cakes from Teejay Bakehouse and they never disappoint. Their attention to detail is incredible!",
   },
 ];
@@ -56,7 +55,7 @@ export default function Home() {
               <div className="relative">
                 <div className="absolute -top-8 -left-8 w-64 h-64 bg-bakery-pink rounded-full opacity-10"></div>
                 <img
-                  src="/placeholder.svg"
+                  src="https://images.unsplash.com/photo-1582716401301-b2407dc7563d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                   alt="Beautiful custom cake"
                   className="relative z-10 rounded-lg shadow-lg max-w-md animate-float"
                 />

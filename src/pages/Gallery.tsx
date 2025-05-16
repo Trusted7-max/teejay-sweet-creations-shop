@@ -23,84 +23,84 @@ const cakes = [
   {
     id: 1,
     name: "Classic Birthday Cake",
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     categories: ["birthday"],
     type: "image"
   },
   {
     id: 2,
     name: "Wedding Elegance",
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1622973536968-3ead9e780960?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     categories: ["wedding"],
     type: "image"
   },
   {
     id: 3,
     name: "Graduation Cap Cake",
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1619846227717-205b9dccac17?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     categories: ["graduation"],
     type: "image"
   },
   {
     id: 4,
     name: "Anniversary Delight",
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1623246123320-0d6636755345?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     categories: ["anniversary"],
     type: "image"
   },
   {
     id: 5,
     name: "Christmas Fruitcake",
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     categories: ["seasonal"],
     type: "image"
   },
   {
     id: 6,
     name: "Chocolate Birthday Surprise",
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1621303837174-89787a7d4729?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     categories: ["birthday"],
     type: "image"
   },
   {
     id: 7,
     name: "Wedding Cake Decorating",
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1549517045-bc93de075e53?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     categories: ["wedding"],
     type: "video"
   },
   {
     id: 8,
     name: "Graduation Celebration Cake",
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1615394695853-05dc8d6b293f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     categories: ["graduation"],
     type: "image"
   },
   {
     id: 9,
     name: "Silver Anniversary Cake",
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1627834377411-8da5f4f09de8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     categories: ["anniversary"],
     type: "image"
   },
   {
     id: 10,
     name: "Valentine's Day Special",
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1571115177098-24ec42ed204d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     categories: ["seasonal"],
     type: "image"
   },
   {
     id: 11,
     name: "Birthday Cake Assembly",
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1594054528845-f9cfce2abd18?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     categories: ["birthday"],
     type: "video"
   },
   {
     id: 12,
     name: "Easter Bunny Cake",
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     categories: ["seasonal"],
     type: "image"
   },
