@@ -15,7 +15,18 @@ const NotFound = () => {
   }, [location.pathname]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-bakery-cream px-4">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-bakery-cream px-4 py-12">
+      <Link to="/" className="flex items-center mb-8">
+        <img 
+          src="/lovable-uploads/692d0b7f-422c-4f4e-9195-f194d5b5e43c.png" 
+          alt="Teejay Bakehouse" 
+          className="h-16 w-auto mr-3"
+        />
+        <span className="font-pacifico text-2xl md:text-3xl text-bakery-pink">
+          Teejay<span className="text-bakery-red">_</span>bakehouse
+        </span>
+      </Link>
+      
       <div className="text-center max-w-md">
         <img 
           src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" 
@@ -37,6 +48,6 @@ const NotFound = () => {
       </div>
     </div>
   );
-};
+}
 
 export default NotFound;

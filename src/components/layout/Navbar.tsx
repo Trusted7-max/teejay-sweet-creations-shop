@@ -22,7 +22,12 @@ export default function Navbar() {
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8" aria-label="Top">
         <div className="flex items-center justify-between py-3">
           <div className="flex items-center">
-            <Link to="/" className="flex">
+            <Link to="/" className="flex items-center">
+              <img 
+                src="/lovable-uploads/692d0b7f-422c-4f4e-9195-f194d5b5e43c.png" 
+                alt="Teejay Bakehouse" 
+                className="h-12 w-auto mr-3"
+              />
               <span className="font-pacifico text-2xl md:text-3xl text-bakery-pink">
                 Teejay<span className="text-bakery-red">_</span>bakehouse
               </span>
@@ -75,7 +80,12 @@ export default function Navbar() {
         <div className="fixed inset-0 bg-black/30" aria-hidden="true" onClick={() => setMobileMenuOpen(false)} />
         <div className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
-            <Link to="/" className="flex" onClick={() => setMobileMenuOpen(false)}>
+            <Link to="/" className="flex items-center" onClick={() => setMobileMenuOpen(false)}>
+              <img 
+                src="/lovable-uploads/692d0b7f-422c-4f4e-9195-f194d5b5e43c.png" 
+                alt="Teejay Bakehouse" 
+                className="h-10 w-auto mr-2"
+              />
               <span className="font-pacifico text-2xl text-bakery-pink">
                 Teejay<span className="text-bakery-red">_</span>bakehouse
               </span>
