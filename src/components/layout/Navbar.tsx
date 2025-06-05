@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import { ShoppingCart, Menu, X, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { useCart } from "@/contexts/CartContext";
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -14,7 +15,8 @@ const navigation = [
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const cartItemCount = 0;
+  const { getCartItemCount } = useCart();
+  const cartItemCount = getCartItemCount();
   const isAdmin = true; // In a real app, this would be based on user authentication
 
   return (

@@ -1,9 +1,11 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ShoppingCart } from "lucide-react";
+import { useCart } from "@/contexts/CartContext";
+import { useToast } from "@/hooks/use-toast";
 
 // Product categories
 const categories = [
@@ -177,14 +179,28 @@ const products = [
 
 export default function Store() {
   const [activeCategory, setActiveCategory] = useState("all");
-  const [cartCount, setCartCount] = useState(0);
+  const { addToCart } = useCart();
+  const { toast } = useToast();
+  const navigate = useNavigate();
 
   const filteredProducts = activeCategory === "all" 
     ? products 
     : products.filter(product => product.category === activeCategory);
 
-  const handleAddToCart = (productId: number) => {
-    setCartCount(prev => prev + 1);
+  const handleAddToCart = (product: any) => {
+    addToCart({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      image: product.image,
+    });
+    
+    toast({
+      title: "Added to cart!",
+      description: `${product.name} has been added to your cart.`,
+    });
+    
+    navigate("/cart");
   };
 
   return (
@@ -255,7 +271,7 @@ export default function Store() {
                   </div>
                   <div className="mt-4">
                     <Button 
-                      onClick={() => handleAddToCart(product.id)} 
+                      onClick={() => handleAddToCart(product)} 
                       className="w-full bg-bakery-red hover:bg-bakery-pink text-white"
                     >
                       <ShoppingCart className="mr-2 h-4 w-4" />
