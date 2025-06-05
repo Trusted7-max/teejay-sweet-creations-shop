@@ -1,5 +1,6 @@
 
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
+import { useAuth } from './AuthContext';
 
 export interface CartItem {
   id: number;
@@ -35,6 +36,24 @@ interface CartProviderProps {
 
 export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   const [items, setItems] = useState<CartItem[]>([]);
+  const { user } = useAuth();
+
+  // Load cart from localStorage when component mounts or user changes
+  useEffect(() => {
+    const cartKey = user ? `cart_${user.id}` : 'cart_guest';
+    const savedCart = localStorage.getItem(cartKey);
+    if (savedCart) {
+      setItems(JSON.parse(savedCart));
+    } else {
+      setItems([]);
+    }
+  }, [user]);
+
+  // Save cart to localStorage whenever items change
+  useEffect(() => {
+    const cartKey = user ? `cart_${user.id}` : 'cart_guest';
+    localStorage.setItem(cartKey, JSON.stringify(items));
+  }, [items, user]);
 
   const addToCart = (product: Omit<CartItem, 'quantity'>) => {
     setItems(prevItems => {
