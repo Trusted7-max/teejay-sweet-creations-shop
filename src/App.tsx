@@ -10,6 +10,7 @@ import Gallery from "./pages/Gallery";
 import Order from "./pages/Order";
 import About from "./pages/About";
 import Store from "./pages/Store";
+import Admin from "./pages/Admin";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -29,6 +30,7 @@ const App = () => (
           <Route path="/about" element={<Layout><About /></Layout>} />
           <Route path="/store" element={<Layout><Store /></Layout>} />
           <Route path="/store/:category" element={<Layout><Store /></Layout>} />
+          <Route path="/admin" element={<Admin />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

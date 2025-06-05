@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -10,12 +9,17 @@ import { ShoppingCart } from "lucide-react";
 const categories = [
   { id: "all", name: "All Products" },
   { id: "cakes", name: "Cakes" },
+  { id: "bento-cakes", name: "Bento Cakes" },
   { id: "cupcakes", name: "Cupcakes" },
   { id: "cookies", name: "Cookies" },
   { id: "pastries", name: "Pastries" },
+  { id: "cold-desserts", name: "Cold Desserts" },
+  { id: "hot-desserts", name: "Hot Desserts" },
+  { id: "treats", name: "Treats" },
+  { id: "scones", name: "Scones" },
 ];
 
-// Sample products
+// Sample products with new categories
 const products = [
   {
     id: 1,
@@ -89,6 +93,86 @@ const products = [
     category: "pastries",
     availability: "In Stock",
   },
+  {
+    id: 10,
+    name: "Strawberry Bento Cake",
+    price: "$15.00",
+    image: "https://images.unsplash.com/photo-1586985289688-ca3cf47d3e6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    category: "bento-cakes",
+    availability: "In Stock",
+  },
+  {
+    id: 11,
+    name: "Chocolate Bento Cake",
+    price: "$15.00",
+    image: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    category: "bento-cakes",
+    availability: "In Stock",
+  },
+  {
+    id: 12,
+    name: "Tiramisu",
+    price: "$8.50",
+    image: "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    category: "cold-desserts",
+    availability: "In Stock",
+  },
+  {
+    id: 13,
+    name: "Panna Cotta",
+    price: "$7.00",
+    image: "https://images.unsplash.com/photo-1488477181946-6428a0291777?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    category: "cold-desserts",
+    availability: "In Stock",
+  },
+  {
+    id: 14,
+    name: "Warm Apple Crumble",
+    price: "$9.50",
+    image: "https://images.unsplash.com/photo-1464219222984-216ebffaaf85?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    category: "hot-desserts",
+    availability: "In Stock",
+  },
+  {
+    id: 15,
+    name: "Chocolate Lava Cake",
+    price: "$12.00",
+    image: "https://images.unsplash.com/photo-1607920591413-4ec007e70023?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    category: "hot-desserts",
+    availability: "In Stock",
+  },
+  {
+    id: 16,
+    name: "Chocolate Truffles (Box of 6)",
+    price: "$16.00",
+    image: "https://images.unsplash.com/photo-1481391319762-47dff72954d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    category: "treats",
+    availability: "In Stock",
+  },
+  {
+    id: 17,
+    name: "Fruit Tarts (Box of 4)",
+    price: "$14.00",
+    image: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    category: "treats",
+    availability: "In Stock",
+  },
+  {
+    id: 18,
+    name: "Classic Scones (Box of 4)",
+    price: "$10.00",
+    image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    category: "scones",
+    availability: "In Stock",
+  },
+  {
+    id: 19,
+    name: "Cranberry Orange Scones (Box of 4)",
+    price: "$11.00",
+    image: "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    category: "scones",
+    availability: "In Stock",
+  },
 ];
 
 export default function Store() {
@@ -101,7 +185,6 @@ export default function Store() {
 
   const handleAddToCart = (productId: number) => {
     setCartCount(prev => prev + 1);
-    // In a real app, this would add the product to a cart state or context
   };
 
   return (
@@ -130,13 +213,13 @@ export default function Store() {
 
       {/* Product Categories */}
       <Tabs defaultValue="all" className="w-full" onValueChange={setActiveCategory}>
-        <div className="flex justify-center mb-8">
-          <TabsList className="bg-bakery-cream">
+        <div className="flex justify-center mb-8 overflow-x-auto">
+          <TabsList className="bg-bakery-cream flex-wrap h-auto p-1">
             {categories.map(category => (
               <TabsTrigger 
                 key={category.id} 
                 value={category.id}
-                className="data-[state=active]:bg-bakery-pink data-[state=active]:text-white"
+                className="data-[state=active]:bg-bakery-pink data-[state=active]:text-white whitespace-nowrap"
               >
                 {category.name}
               </TabsTrigger>

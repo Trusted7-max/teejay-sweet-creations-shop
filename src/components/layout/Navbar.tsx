@@ -1,7 +1,6 @@
-
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { ShoppingCart, Menu, X } from "lucide-react";
+import { ShoppingCart, Menu, X, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -15,7 +14,8 @@ const navigation = [
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const cartItemCount = 0; // This would normally come from a cart context
+  const cartItemCount = 0;
+  const isAdmin = true; // In a real app, this would be based on user authentication
 
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50">
@@ -58,6 +58,13 @@ export default function Navbar() {
                 </span>
               )}
             </Link>
+            
+            {isAdmin && (
+              <Link to="/admin" className="p-2 group">
+                <Settings className="h-6 w-6 text-bakery-dark group-hover:text-bakery-red transition-colors" />
+              </Link>
+            )}
+            
             <Button asChild className="bg-bakery-red hover:bg-bakery-pink text-white">
               <Link to="/order/custom">Custom Order</Link>
             </Button>
