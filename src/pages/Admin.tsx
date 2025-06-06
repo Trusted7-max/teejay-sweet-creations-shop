@@ -26,8 +26,13 @@ import {
   Package,
   Eye,
   CreditCard,
-  Calendar
+  Calendar,
+  LogOut
 } from "lucide-react";
+import { AdminProvider, useAdmin } from "@/contexts/AdminContext";
+import AdminAuth from "@/components/admin/AdminAuth";
+import ProductManagement from "@/components/admin/ProductManagement";
+import AdminCredentials from "@/components/admin/AdminCredentials";
 
 // Sample analytics data
 const revenueData = [
@@ -57,23 +62,35 @@ const trafficData = [
   { day: "Sun", visitors: 280 },
 ];
 
-export default function Admin() {
+function AdminDashboard() {
   const [activeTab, setActiveTab] = useState("dashboard");
+  const { adminUser, signOut } = useAdmin();
 
   return (
     <div className="min-h-screen bg-bakery-cream">
       <div className="container mx-auto p-6">
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold text-bakery-dark mb-2">Admin Dashboard</h1>
-          <p className="text-bakery-dark">Manage your bakery operations and monitor performance</p>
+        <div className="mb-8 flex justify-between items-center">
+          <div>
+            <h1 className="text-4xl font-bold text-bakery-dark mb-2">Admin Dashboard</h1>
+            <p className="text-bakery-dark">Welcome back, {adminUser?.email}</p>
+          </div>
+          <Button 
+            onClick={signOut}
+            variant="outline"
+            className="flex items-center gap-2"
+          >
+            <LogOut className="h-4 w-4" />
+            Sign Out
+          </Button>
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-4 mb-8">
+          <TabsList className="grid w-full grid-cols-5 mb-8">
             <TabsTrigger value="dashboard">Dashboard</TabsTrigger>
             <TabsTrigger value="products">Products</TabsTrigger>
             <TabsTrigger value="orders">Orders</TabsTrigger>
             <TabsTrigger value="analytics">Analytics</TabsTrigger>
+            <TabsTrigger value="settings">Settings</TabsTrigger>
           </TabsList>
 
           <TabsContent value="dashboard" className="space-y-6">
@@ -179,38 +196,7 @@ export default function Admin() {
           </TabsContent>
 
           <TabsContent value="products" className="space-y-6">
-            <div className="flex justify-between items-center">
-              <h2 className="text-2xl font-bold text-bakery-dark">Product Management</h2>
-              <Button className="bg-bakery-red hover:bg-bakery-pink">Add New Product</Button>
-            </div>
-            
-            <Card>
-              <CardContent className="p-6">
-                <div className="space-y-4">
-                  <div className="grid grid-cols-1 md:grid-cols-4 gap-4 p-4 border rounded-lg bg-white">
-                    <div>
-                      <img 
-                        src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
-                        alt="Product" 
-                        className="w-20 h-20 object-cover rounded"
-                      />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold">Classic Chocolate Cake</h3>
-                      <p className="text-sm text-gray-600">Category: Cakes</p>
-                    </div>
-                    <div>
-                      <p className="font-semibold text-bakery-red">$35.00</p>
-                      <Badge variant="secondary" className="bg-green-100 text-green-800">In Stock</Badge>
-                    </div>
-                    <div className="flex gap-2">
-                      <Button size="sm" variant="outline">Edit</Button>
-                      <Button size="sm" variant="outline" className="text-red-600">Delete</Button>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+            <ProductManagement />
           </TabsContent>
 
           <TabsContent value="orders" className="space-y-6">
@@ -300,8 +286,42 @@ export default function Admin() {
               </Card>
             </div>
           </TabsContent>
+
+          <TabsContent value="settings" className="space-y-6">
+            <h2 className="text-2xl font-bold text-bakery-dark">Admin Settings</h2>
+            <AdminCredentials />
+          </TabsContent>
         </Tabs>
       </div>
     </div>
   );
+}
+
+export default function Admin() {
+  return (
+    <AdminProvider>
+      <AdminComponent />
+    </AdminProvider>
+  );
+}
+
+function AdminComponent() {
+  const { adminUser, loading } = useAdmin();
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-bakery-cream flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-bakery-red"></div>
+          <p className="mt-4 text-bakery-dark">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!adminUser) {
+    return <AdminAuth />;
+  }
+
+  return <AdminDashboard />;
 }

@@ -15,13 +15,13 @@ interface Category {
   slug: string;
 }
 
-interface ProductFormProps {
+interface AdminProductFormProps {
   onSubmit: (product: any) => void;
   onCancel: () => void;
   initialData?: any;
 }
 
-export default function ProductForm({ onSubmit, onCancel, initialData }: ProductFormProps) {
+export default function AdminProductForm({ onSubmit, onCancel, initialData }: AdminProductFormProps) {
   const [formData, setFormData] = useState({
     name: initialData?.name || "",
     price: initialData?.price || "",
@@ -91,12 +91,14 @@ export default function ProductForm({ onSubmit, onCancel, initialData }: Product
               </div>
 
               <div>
-                <Label htmlFor="price">Price</Label>
+                <Label htmlFor="price">Price ($)</Label>
                 <Input
                   id="price"
                   value={formData.price}
                   onChange={(e) => setFormData(prev => ({ ...prev, price: e.target.value }))}
-                  placeholder="$0.00"
+                  placeholder="0.00"
+                  type="number"
+                  step="0.01"
                   required
                 />
               </div>
