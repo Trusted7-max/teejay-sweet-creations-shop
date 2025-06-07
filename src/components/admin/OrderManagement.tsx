@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -11,12 +10,15 @@ import { Search, Phone, Mail, MapPin, Clock, Package } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { useAdmin } from "@/contexts/AdminContext";
+import type { Database } from "@/integrations/supabase/types";
+
+type OrderStatus = Database["public"]["Enums"]["order_status"];
 
 interface Order {
   id: string;
   created_at: string;
   total_amount: number;
-  status: string;
+  status: OrderStatus;
   customer_name: string;
   customer_email: string;
   customer_phone: string;
@@ -37,7 +39,7 @@ interface Order {
   }>;
 }
 
-const statusOptions = [
+const statusOptions: Array<{ value: OrderStatus; label: string }> = [
   { value: 'placed', label: 'Order Placed' },
   { value: 'preparing', label: 'Preparing' },
   { value: 'baking', label: 'Baking' },
@@ -55,7 +57,7 @@ export default function OrderManagement() {
   const [orders, setOrders] = useState<Order[]>([]);
   const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
-  const [statusFilter, setStatusFilter] = useState("all");
+  const [statusFilter, setStatusFilter] = useState<string>("all");
   const [loading, setLoading] = useState(true);
   const [updatingStatus, setUpdatingStatus] = useState(false);
 
@@ -94,7 +96,7 @@ export default function OrderManagement() {
     }
   };
 
-  const updateOrderStatus = async (orderId: string, newStatus: string, notes?: string) => {
+  const updateOrderStatus = async (orderId: string, newStatus: OrderStatus, notes?: string) => {
     setUpdatingStatus(true);
     try {
       const { error } = await supabase
@@ -155,7 +157,7 @@ export default function OrderManagement() {
     return matchesSearch && matchesStatus;
   });
 
-  const getStatusBadgeVariant = (status: string) => {
+  const getStatusBadgeVariant = (status: OrderStatus) => {
     switch (status) {
       case 'completed': return 'default';
       case 'cancelled': return 'destructive';
@@ -255,7 +257,7 @@ export default function OrderManagement() {
                       </Badge>
                       <Select 
                         value={selectedOrder.status} 
-                        onValueChange={(value) => updateOrderStatus(selectedOrder.id, value)}
+                        onValueChange={(value: OrderStatus) => updateOrderStatus(selectedOrder.id, value)}
                         disabled={updatingStatus}
                       >
                         <SelectTrigger className="w-48">
