@@ -1,4 +1,5 @@
-import { useState } from "react";
+
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -6,6 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ShoppingCart } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 // Product categories
 const categories = [
@@ -21,177 +23,68 @@ const categories = [
   { id: "scones", name: "Scones" },
 ];
 
-// Sample products with new categories
-const products = [
-  {
-    id: 1,
-    name: "Classic Chocolate Cake",
-    price: "$35.00",
-    image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    category: "cakes",
-    availability: "In Stock",
-  },
-  {
-    id: 2,
-    name: "Red Velvet Cupcakes (Box of 6)",
-    price: "$18.00",
-    image: "https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    category: "cupcakes",
-    availability: "In Stock",
-  },
-  {
-    id: 3,
-    name: "Chocolate Chip Cookies (Dozen)",
-    price: "$12.00",
-    image: "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    category: "cookies",
-    availability: "In Stock",
-  },
-  {
-    id: 4,
-    name: "Strawberry Cheesecake",
-    price: "$32.00",
-    image: "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    category: "cakes",
-    availability: "In Stock",
-  },
-  {
-    id: 5,
-    name: "Vanilla Bean Cupcakes (Box of 6)",
-    price: "$18.00",
-    image: "https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    category: "cupcakes",
-    availability: "In Stock",
-  },
-  {
-    id: 6,
-    name: "Almond Croissants (2 pack)",
-    price: "$8.50",
-    image: "https://images.unsplash.com/photo-1608198093002-ad4e005484ec?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    category: "pastries",
-    availability: "In Stock",
-  },
-  {
-    id: 7,
-    name: "Birthday Cake",
-    price: "$42.00",
-    image: "https://images.unsplash.com/photo-1621303837174-89787a7d4729?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    category: "cakes",
-    availability: "In Stock",
-  },
-  {
-    id: 8,
-    name: "Macaron Collection (Box of 12)",
-    price: "$24.00",
-    image: "https://images.unsplash.com/photo-1612201142855-7873bc1661b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    category: "cookies",
-    availability: "Limited Stock",
-  },
-  {
-    id: 9,
-    name: "Pain au Chocolat (2 pack)",
-    price: "$7.50",
-    image: "https://images.unsplash.com/photo-1603532648955-039310d9ed75?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    category: "pastries",
-    availability: "In Stock",
-  },
-  {
-    id: 10,
-    name: "Strawberry Bento Cake",
-    price: "$15.00",
-    image: "https://images.unsplash.com/photo-1586985289688-ca3cf47d3e6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    category: "bento-cakes",
-    availability: "In Stock",
-  },
-  {
-    id: 11,
-    name: "Chocolate Bento Cake",
-    price: "$15.00",
-    image: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    category: "bento-cakes",
-    availability: "In Stock",
-  },
-  {
-    id: 12,
-    name: "Tiramisu",
-    price: "$8.50",
-    image: "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    category: "cold-desserts",
-    availability: "In Stock",
-  },
-  {
-    id: 13,
-    name: "Panna Cotta",
-    price: "$7.00",
-    image: "https://images.unsplash.com/photo-1488477181946-6428a0291777?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    category: "cold-desserts",
-    availability: "In Stock",
-  },
-  {
-    id: 14,
-    name: "Warm Apple Crumble",
-    price: "$9.50",
-    image: "https://images.unsplash.com/photo-1464219222984-216ebffaaf85?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    category: "hot-desserts",
-    availability: "In Stock",
-  },
-  {
-    id: 15,
-    name: "Chocolate Lava Cake",
-    price: "$12.00",
-    image: "https://images.unsplash.com/photo-1607920591413-4ec007e70023?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    category: "hot-desserts",
-    availability: "In Stock",
-  },
-  {
-    id: 16,
-    name: "Chocolate Truffles (Box of 6)",
-    price: "$16.00",
-    image: "https://images.unsplash.com/photo-1481391319762-47dff72954d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    category: "treats",
-    availability: "In Stock",
-  },
-  {
-    id: 17,
-    name: "Fruit Tarts (Box of 4)",
-    price: "$14.00",
-    image: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    category: "treats",
-    availability: "In Stock",
-  },
-  {
-    id: 18,
-    name: "Classic Scones (Box of 4)",
-    price: "$10.00",
-    image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    category: "scones",
-    availability: "In Stock",
-  },
-  {
-    id: 19,
-    name: "Cranberry Orange Scones (Box of 4)",
-    price: "$11.00",
-    image: "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    category: "scones",
-    availability: "In Stock",
-  },
-];
+interface Product {
+  id: number;
+  name: string;
+  price: number;
+  image: string;
+  category_id: string;
+  in_stock: boolean;
+  categories?: {
+    name: string;
+    slug: string;
+  };
+}
 
 export default function Store() {
   const [activeCategory, setActiveCategory] = useState("all");
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
   const { addToCart } = useCart();
   const { toast } = useToast();
   const navigate = useNavigate();
 
+  const fetchProducts = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('products')
+        .select(`
+          *,
+          categories (
+            name,
+            slug
+          )
+        `)
+        .eq('in_stock', true)
+        .order('created_at', { ascending: false });
+
+      if (error) throw error;
+      setProducts(data || []);
+    } catch (error) {
+      console.error('Error fetching products:', error);
+      toast({
+        title: "Error",
+        description: "Failed to load products",
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
   const filteredProducts = activeCategory === "all" 
     ? products 
-    : products.filter(product => product.category === activeCategory);
+    : products.filter(product => product.categories?.slug === activeCategory);
 
-  const handleAddToCart = (product: any) => {
+  const handleAddToCart = (product: Product) => {
     addToCart({
       id: product.id,
       name: product.name,
-      price: product.price,
+      price: `$${product.price.toFixed(2)}`,
       image: product.image,
     });
     
@@ -202,6 +95,20 @@ export default function Store() {
     
     navigate("/cart");
   };
+
+  const getAvailabilityText = (inStock: boolean) => {
+    return inStock ? "In Stock" : "Out of Stock";
+  };
+
+  if (loading) {
+    return (
+      <div className="page-container">
+        <div className="text-center py-8">
+          <p className="text-lg text-bakery-dark">Loading products...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="page-container">
@@ -245,43 +152,60 @@ export default function Store() {
 
         {/* All Products */}
         <TabsContent value={activeCategory} className="mt-0">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredProducts.map(product => (
-              <Card key={product.id} className="overflow-hidden cake-card-shadow hover-scale">
-                <div className="aspect-square bg-bakery-cream relative">
-                  <img 
-                    src={product.image} 
-                    alt={product.name}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute top-2 right-2">
-                    <span className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${
-                      product.availability === "In Stock" 
-                        ? "bg-green-100 text-green-800" 
-                        : "bg-yellow-100 text-yellow-800"
-                    }`}>
-                      {product.availability}
-                    </span>
+          {filteredProducts.length === 0 ? (
+            <div className="text-center py-12">
+              <p className="text-lg text-bakery-dark">
+                {activeCategory === "all" 
+                  ? "No products available at the moment." 
+                  : `No products available in the ${categories.find(c => c.id === activeCategory)?.name} category.`
+                }
+              </p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredProducts.map(product => (
+                <Card key={product.id} className="overflow-hidden cake-card-shadow hover-scale">
+                  <div className="aspect-square bg-bakery-cream relative">
+                    <img 
+                      src={product.image} 
+                      alt={product.name}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute top-2 right-2">
+                      <span className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${
+                        product.in_stock 
+                          ? "bg-green-100 text-green-800" 
+                          : "bg-red-100 text-red-800"
+                      }`}>
+                        {getAvailabilityText(product.in_stock)}
+                      </span>
+                    </div>
                   </div>
-                </div>
-                <CardContent className="p-4">
-                  <div className="flex justify-between items-start mb-2">
-                    <h3 className="font-semibold text-lg text-bakery-dark">{product.name}</h3>
-                    <span className="font-bold text-bakery-red">{product.price}</span>
-                  </div>
-                  <div className="mt-4">
-                    <Button 
-                      onClick={() => handleAddToCart(product)} 
-                      className="w-full bg-bakery-red hover:bg-bakery-pink text-white"
-                    >
-                      <ShoppingCart className="mr-2 h-4 w-4" />
-                      Add to Cart
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+                  <CardContent className="p-4">
+                    <div className="flex justify-between items-start mb-2">
+                      <h3 className="font-semibold text-lg text-bakery-dark">{product.name}</h3>
+                      <span className="font-bold text-bakery-red">${product.price.toFixed(2)}</span>
+                    </div>
+                    {product.categories && (
+                      <p className="text-sm text-gray-600 mb-2">
+                        Category: {product.categories.name}
+                      </p>
+                    )}
+                    <div className="mt-4">
+                      <Button 
+                        onClick={() => handleAddToCart(product)} 
+                        className="w-full bg-bakery-red hover:bg-bakery-pink text-white"
+                        disabled={!product.in_stock}
+                      >
+                        <ShoppingCart className="mr-2 h-4 w-4" />
+                        {product.in_stock ? "Add to Cart" : "Out of Stock"}
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          )}
         </TabsContent>
       </Tabs>
 
