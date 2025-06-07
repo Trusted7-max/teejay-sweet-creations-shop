@@ -105,6 +105,41 @@ export type Database = {
           },
         ]
       }
+      order_status_history: {
+        Row: {
+          changed_by: string | null
+          id: string
+          notes: string | null
+          order_id: string
+          status: Database["public"]["Enums"]["order_status"]
+          timestamp: string | null
+        }
+        Insert: {
+          changed_by?: string | null
+          id?: string
+          notes?: string | null
+          order_id: string
+          status: Database["public"]["Enums"]["order_status"]
+          timestamp?: string | null
+        }
+        Update: {
+          changed_by?: string | null
+          id?: string
+          notes?: string | null
+          order_id?: string
+          status?: Database["public"]["Enums"]["order_status"]
+          timestamp?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "order_status_history_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "orders"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       orders: {
         Row: {
           created_at: string | null
@@ -113,10 +148,14 @@ export type Database = {
           customer_phone: string | null
           delivery_address: string | null
           delivery_date: string | null
+          delivery_method: string | null
+          estimated_completion: string | null
           id: string
+          notes: string | null
           order_date: string | null
+          payment_status: string | null
           special_instructions: string | null
-          status: string | null
+          status: Database["public"]["Enums"]["order_status"] | null
           total_amount: number
           updated_at: string | null
           user_id: string | null
@@ -128,10 +167,14 @@ export type Database = {
           customer_phone?: string | null
           delivery_address?: string | null
           delivery_date?: string | null
+          delivery_method?: string | null
+          estimated_completion?: string | null
           id?: string
+          notes?: string | null
           order_date?: string | null
+          payment_status?: string | null
           special_instructions?: string | null
-          status?: string | null
+          status?: Database["public"]["Enums"]["order_status"] | null
           total_amount: number
           updated_at?: string | null
           user_id?: string | null
@@ -143,10 +186,14 @@ export type Database = {
           customer_phone?: string | null
           delivery_address?: string | null
           delivery_date?: string | null
+          delivery_method?: string | null
+          estimated_completion?: string | null
           id?: string
+          notes?: string | null
           order_date?: string | null
+          payment_status?: string | null
           special_instructions?: string | null
-          status?: string | null
+          status?: Database["public"]["Enums"]["order_status"] | null
           total_amount?: number
           updated_at?: string | null
           user_id?: string | null
@@ -207,27 +254,60 @@ export type Database = {
       }
       profiles: {
         Row: {
+          address: string | null
           avatar_url: string | null
+          city: string | null
           created_at: string | null
+          date_of_birth: string | null
+          delivery_instructions: string | null
+          dietary_restrictions: string | null
           email: string | null
+          first_name: string | null
           full_name: string | null
           id: string
+          last_name: string | null
+          marketing_opt_in: boolean | null
+          phone: string | null
+          postal_code: string | null
+          preferred_contact: string | null
           updated_at: string | null
         }
         Insert: {
+          address?: string | null
           avatar_url?: string | null
+          city?: string | null
           created_at?: string | null
+          date_of_birth?: string | null
+          delivery_instructions?: string | null
+          dietary_restrictions?: string | null
           email?: string | null
+          first_name?: string | null
           full_name?: string | null
           id: string
+          last_name?: string | null
+          marketing_opt_in?: boolean | null
+          phone?: string | null
+          postal_code?: string | null
+          preferred_contact?: string | null
           updated_at?: string | null
         }
         Update: {
+          address?: string | null
           avatar_url?: string | null
+          city?: string | null
           created_at?: string | null
+          date_of_birth?: string | null
+          delivery_instructions?: string | null
+          dietary_restrictions?: string | null
           email?: string | null
+          first_name?: string | null
           full_name?: string | null
           id?: string
+          last_name?: string | null
+          marketing_opt_in?: boolean | null
+          phone?: string | null
+          postal_code?: string | null
+          preferred_contact?: string | null
           updated_at?: string | null
         }
         Relationships: []
@@ -240,7 +320,16 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      order_status:
+        | "placed"
+        | "preparing"
+        | "baking"
+        | "decorating"
+        | "quality_check"
+        | "ready"
+        | "out_for_delivery"
+        | "completed"
+        | "cancelled"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -355,6 +444,18 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      order_status: [
+        "placed",
+        "preparing",
+        "baking",
+        "decorating",
+        "quality_check",
+        "ready",
+        "out_for_delivery",
+        "completed",
+        "cancelled",
+      ],
+    },
   },
 } as const

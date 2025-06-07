@@ -47,7 +47,7 @@ export default function Cart() {
     try {
       const totalAmount = getCartTotal() + (getCartTotal() >= 75 ? 0 : 10);
       
-      // Create the order
+      // Create the order with placed status
       const { data: order, error: orderError } = await supabase
         .from('orders')
         .insert({
@@ -57,7 +57,10 @@ export default function Cart() {
           customer_email: orderDetails.customerEmail,
           customer_phone: orderDetails.customerPhone,
           delivery_address: orderDetails.deliveryAddress,
+          delivery_method: orderDetails.deliveryAddress ? 'delivery' : 'collection',
           special_instructions: orderDetails.specialInstructions,
+          status: 'placed',
+          payment_status: 'pending',
         })
         .select()
         .single();
@@ -85,7 +88,7 @@ export default function Cart() {
         description: `Your order #${order.id.slice(0, 8)} has been placed.`,
       });
       
-      navigate('/');
+      navigate('/orders');
     } catch (error: any) {
       toast({
         title: "Error placing order",
