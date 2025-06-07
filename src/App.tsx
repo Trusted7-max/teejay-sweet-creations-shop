@@ -15,6 +15,7 @@ import Orders from "./pages/Orders";
 import About from "./pages/About";
 import Store from "./pages/Store";
 import Cart from "./pages/Cart";
+import Contact from "./pages/Contact";
 import Admin from "./pages/Admin";
 import NotFound from "./pages/NotFound";
 
@@ -40,6 +41,7 @@ const App = () => (
                 <Route path="/store" element={<Layout><Store /></Layout>} />
                 <Route path="/store/:category" element={<Layout><Store /></Layout>} />
                 <Route path="/cart" element={<Layout><Cart /></Layout>} />
+                <Route path="/contact" element={<Layout><Contact /></Layout>} />
                 <Route path="/admin" element={<Admin />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>

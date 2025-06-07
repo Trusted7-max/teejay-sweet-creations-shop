@@ -13,6 +13,7 @@ const navigation = [
   { name: "Store", href: "/store" },
   { name: "Order", href: "/order" },
   { name: "About", href: "/about" },
+  { name: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
@@ -41,7 +42,7 @@ export default function Navbar() {
             {/* Logo */}
             <div className="flex-shrink-0">
               <Link to="/" className="flex items-center">
-                <span className="text-2xl font-bold text-bakery-red">Sweet Dreams</span>
+                <span className="text-2xl font-bold text-bakery-red">Teejay_bakehouse</span>
               </Link>
             </div>
 
