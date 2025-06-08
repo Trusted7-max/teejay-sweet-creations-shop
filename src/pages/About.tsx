@@ -5,28 +5,28 @@ import { Cake } from "lucide-react";
 // Team members data
 const teamMembers = [
   {
-    name: "Teejay Johnson",
+    name: "Thelma",
     role: "Founder & Head Baker",
     image: "/placeholder.svg",
-    bio: "With over 15 years of baking experience, Teejay started this bakery with a passion for creating beautiful, delicious cakes that bring joy to special occasions."
+    bio: "With over 15 years of baking experience, Thelma started this bakery with a passion for creating beautiful, delicious cakes that bring joy to special occasions."
   },
   {
-    name: "Maria Rodriguez",
+    name: "Juliet",
     role: "Cake Designer",
     image: "/placeholder.svg",
-    bio: "Maria is our artistic genius behind our most elaborate cake designs. Her background in fine arts helps her create edible masterpieces that look too good to eat."
+    bio: "Juliet is our artistic genius behind our most elaborate cake designs. Her background in fine arts helps her create edible masterpieces that look too good to eat."
   },
   {
-    name: "James Wilson",
+    name: "Portia",
     role: "Pastry Chef",
     image: "/placeholder.svg",
-    bio: "James specializes in creating the perfect flavors and textures. He's constantly experimenting with new combinations to delight our customers."
+    bio: "Portia specializes in creating the perfect flavors and textures. She's constantly experimenting with new combinations to delight our customers."
   },
   {
-    name: "Sarah Thompson",
+    name: "Debrain",
     role: "Customer Relations",
     image: "/placeholder.svg",
-    bio: "Sarah ensures that every customer gets exactly what they want. She's the friendly voice you'll hear when you call to place your order."
+    bio: "Debrain ensures that every customer gets exactly what they want. She's the friendly voice you'll hear when you call to place your order."
   }
 ];
 
@@ -43,10 +43,6 @@ const values = [
   {
     title: "Customer Satisfaction",
     description: "Your vision is our priority. We work closely with each client to ensure your cake exceeds expectations for your special occasion."
-  },
-  {
-    title: "Community Connection",
-    description: "We're proud to be part of our local community, participating in events and supporting local causes through our baking."
   }
 ];
 
@@ -56,7 +52,7 @@ export default function About() {
       <div className="text-center mb-12">
         <h1 className="text-4xl md:text-5xl font-bold text-bakery-dark mb-4">About Teejay Bakehouse</h1>
         <p className="text-lg text-bakery-dark max-w-2xl mx-auto">
-          Crafting beautiful, delicious cakes with passion and creativity since 2010.
+          Crafting beautiful, delicious cakes with passion and creativity since 2021.
         </p>
       </div>
 
@@ -67,10 +63,10 @@ export default function About() {
             <h2 className="section-title">Our Story</h2>
             <div className="space-y-4 text-bakery-dark">
               <p>
-                Teejay Bakehouse began as a small home kitchen operation in 2010, born from founder Teejay Johnson's passion for creating beautiful, delicious cakes that bring joy to special occasions.
+                Teejay Bakehouse began as a small home kitchen operation in 2021, born from founder Thelma and her Mom Juliet passion for creating beautiful, delicious cakes that bring joy to special occasions.
               </p>
               <p>
-                What started as baking for family and friends quickly grew into a beloved local business as word spread about our exceptional cake designs and flavors. In 2015, we moved into our current bakery location, allowing us to serve more customers while maintaining our commitment to quality and personalization.
+                What started as baking for family and friends quickly grew into a beloved local business as word spread about our exceptional cake designs and flavors. In 2024, we moved into our current bakery location, allowing us to serve more customers while maintaining our commitment to quality and personalization.
               </p>
               <p>
                 Today, Teejay Bakehouse has become known throughout the region as the go-to bakery for custom celebration cakes that not only look stunning but taste amazing. We take pride in being part of our customers' most important moments - from birthdays and weddings to graduations and anniversaries.
@@ -119,7 +115,7 @@ export default function About() {
       <section className="mb-20">
         <div className="bg-bakery-cream rounded-lg p-8 md:p-12">
           <h2 className="section-title text-center mb-12">Our Values</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {values.map((value, index) => (
               <div key={index} className="flex">
                 <div className="mr-4 mt-1">
@@ -230,8 +226,8 @@ export default function About() {
               <div className="space-y-1 text-bakery-dark">
                 <p>
                   <span className="font-medium">Phone:</span>{" "}
-                  <a href="tel:+15551234567" className="hover:text-bakery-pink transition-colors">
-                    (555) 123-4567
+                  <a href="tel:+27685685755" className="hover:text-bakery-pink transition-colors">
+                    +27 68 568 5755
                   </a>
                 </p>
                 <p>
