@@ -1,11 +1,12 @@
 
+
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Cake, CakeSlice, Calendar } from "lucide-react";
 
 const categories = [
-  { name: "Birthday Cakes", image: "https://images.unsplash.com/photo-1587734361993-0a4c10a3e074?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", path: "/gallery/birthday" },
+  { name: "Birthday Cakes", image: "/lovable-uploads/a889636f-86d5-452c-8380-a12b26fb837d.png", path: "/gallery/birthday" },
   { name: "Wedding Cakes", image: "https://images.unsplash.com/photo-1562777717-dc6984f65a63?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", path: "/gallery/wedding" },
   { name: "Graduation Cakes", image: "/lovable-uploads/0ccb093e-c6db-4ad8-bfa3-4f41f3e7c397.png", path: "/gallery/graduation" },
   { name: "Anniversary Cakes", image: "https://images.unsplash.com/photo-1611293388250-580b08c4a145?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", path: "/gallery/anniversary" },
