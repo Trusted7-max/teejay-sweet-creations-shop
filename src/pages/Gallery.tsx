@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { 
   Tabs, 
@@ -44,7 +43,7 @@ const cakes = [
   {
     id: 4,
     name: "Anniversary Delight",
-    image: "https://images.unsplash.com/photo-1623246123320-0d6636755345?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "/lovable-uploads/da24889c-0e7e-4b77-adc8-fcbd1ff7af78.png",
     categories: ["anniversary"],
     type: "image"
   },
@@ -72,7 +71,7 @@ const cakes = [
   {
     id: 8,
     name: "Graduation Celebration Cake",
-    image: "https://images.unsplash.com/photo-1615394695853-05dc8d6b293f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "/lovable-uploads/0ccb093e-c6db-4ad8-bfa3-4f41f3e7c397.png",
     categories: ["graduation"],
     type: "image"
   },
