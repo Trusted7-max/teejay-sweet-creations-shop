@@ -84,7 +84,7 @@ export default function Store() {
     addToCart({
       id: product.id,
       name: product.name,
-      price: `$${product.price.toFixed(2)}`,
+      price: `R${product.price.toFixed(2)}`,
       image: product.image,
     });
     
@@ -184,7 +184,7 @@ export default function Store() {
                   <CardContent className="p-4">
                     <div className="flex justify-between items-start mb-2">
                       <h3 className="font-semibold text-lg text-bakery-dark">{product.name}</h3>
-                      <span className="font-bold text-bakery-red">${product.price.toFixed(2)}</span>
+                      <span className="font-bold text-bakery-red">R{product.price.toFixed(2)}</span>
                     </div>
                     {product.categories && (
                       <p className="text-sm text-gray-600 mb-2">
@@ -263,8 +263,8 @@ export default function Store() {
               <h4 className="font-bold mb-2">Delivery Orders</h4>
               <ul className="list-disc list-inside space-y-1 text-bakery-dark">
                 <li>Available within a 15-mile radius of our store</li>
-                <li>$10 delivery fee for standard orders</li>
-                <li>Free delivery for orders over $75</li>
+                <li>R50 delivery fee for standard orders</li>
+                <li>Free delivery for orders over R400</li>
                 <li>Delivery timeframes: 9am-12pm or 1pm-4pm</li>
               </ul>
             </div>

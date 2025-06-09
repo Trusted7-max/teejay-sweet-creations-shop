@@ -6,8 +6,9 @@ import AdminAuth from "@/components/admin/AdminAuth";
 import AdminCredentials from "@/components/admin/AdminCredentials";
 import OrderManagement from "@/components/admin/OrderManagement";
 import ProductManagement from "@/components/admin/ProductManagement";
+import WebsiteSettings from "@/components/admin/WebsiteSettings";
 import { Button } from "@/components/ui/button";
-import { LogOut, Package, ShoppingCart, Settings } from "lucide-react";
+import { LogOut, Package, ShoppingCart, Settings, Globe } from "lucide-react";
 
 export default function Admin() {
   const { adminUser, signOut } = useAdmin();
@@ -37,7 +38,7 @@ export default function Admin() {
 
         {/* Admin Tabs */}
         <Tabs defaultValue="orders" className="w-full">
-          <TabsList className="grid w-full grid-cols-3 mb-8">
+          <TabsList className="grid w-full grid-cols-4 mb-8">
             <TabsTrigger value="orders" className="flex items-center gap-2">
               <ShoppingCart className="h-4 w-4" />
               Order Management
@@ -46,9 +47,13 @@ export default function Admin() {
               <Package className="h-4 w-4" />
               Product Management
             </TabsTrigger>
+            <TabsTrigger value="website" className="flex items-center gap-2">
+              <Globe className="h-4 w-4" />
+              Website Settings
+            </TabsTrigger>
             <TabsTrigger value="settings" className="flex items-center gap-2">
               <Settings className="h-4 w-4" />
-              Settings
+              Account Settings
             </TabsTrigger>
           </TabsList>
 
@@ -58,6 +63,10 @@ export default function Admin() {
 
           <TabsContent value="products" className="mt-0">
             <ProductManagement />
+          </TabsContent>
+
+          <TabsContent value="website" className="mt-0">
+            <WebsiteSettings />
           </TabsContent>
 
           <TabsContent value="settings" className="mt-0">
