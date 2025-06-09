@@ -312,6 +312,54 @@ export type Database = {
         }
         Relationships: []
       }
+      website_settings: {
+        Row: {
+          address: string | null
+          business_hours: string | null
+          business_name: string
+          created_at: string | null
+          delivery_area: string | null
+          delivery_fee: number | null
+          description: string | null
+          email: string | null
+          free_delivery_threshold: number | null
+          id: string
+          phone: string | null
+          tagline: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          address?: string | null
+          business_hours?: string | null
+          business_name?: string
+          created_at?: string | null
+          delivery_area?: string | null
+          delivery_fee?: number | null
+          description?: string | null
+          email?: string | null
+          free_delivery_threshold?: number | null
+          id?: string
+          phone?: string | null
+          tagline?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          address?: string | null
+          business_hours?: string | null
+          business_name?: string
+          created_at?: string | null
+          delivery_area?: string | null
+          delivery_fee?: number | null
+          description?: string | null
+          email?: string | null
+          free_delivery_threshold?: number | null
+          id?: string
+          phone?: string | null
+          tagline?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
