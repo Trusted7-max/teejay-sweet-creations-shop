@@ -6,9 +6,10 @@ import AdminAuth from "@/components/admin/AdminAuth";
 import AdminCredentials from "@/components/admin/AdminCredentials";
 import OrderManagement from "@/components/admin/OrderManagement";
 import ProductManagement from "@/components/admin/ProductManagement";
+import GalleryManagement from "@/components/admin/GalleryManagement";
 import WebsiteSettings from "@/components/admin/WebsiteSettings";
 import { Button } from "@/components/ui/button";
-import { LogOut, Package, ShoppingCart, Settings, Globe } from "lucide-react";
+import { LogOut, Package, ShoppingCart, Settings, Globe, Image } from "lucide-react";
 
 export default function Admin() {
   const { adminUser, signOut } = useAdmin();
@@ -38,7 +39,7 @@ export default function Admin() {
 
         {/* Admin Tabs */}
         <Tabs defaultValue="orders" className="w-full">
-          <TabsList className="grid w-full grid-cols-4 mb-8">
+          <TabsList className="grid w-full grid-cols-5 mb-8">
             <TabsTrigger value="orders" className="flex items-center gap-2">
               <ShoppingCart className="h-4 w-4" />
               Order Management
@@ -46,6 +47,10 @@ export default function Admin() {
             <TabsTrigger value="products" className="flex items-center gap-2">
               <Package className="h-4 w-4" />
               Product Management
+            </TabsTrigger>
+            <TabsTrigger value="gallery" className="flex items-center gap-2">
+              <Image className="h-4 w-4" />
+              Gallery Management
             </TabsTrigger>
             <TabsTrigger value="website" className="flex items-center gap-2">
               <Globe className="h-4 w-4" />
@@ -63,6 +68,10 @@ export default function Admin() {
 
           <TabsContent value="products" className="mt-0">
             <ProductManagement />
+          </TabsContent>
+
+          <TabsContent value="gallery" className="mt-0">
+            <GalleryManagement />
           </TabsContent>
 
           <TabsContent value="website" className="mt-0">
